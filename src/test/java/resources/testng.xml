@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GoTo_2nd_Interview">
+
+    <test name="Testing a Payment gateway mock">
+        <classes>
+            <class name="tests.BeliPakeCCTanteTest"/>
+        </classes>
+    </test>
+
+</suite>
