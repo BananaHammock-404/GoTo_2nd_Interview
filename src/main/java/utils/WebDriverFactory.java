@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,11 +27,11 @@ public class WebDriverFactory {
     private static void initializeDriver(String browser) {
         switch (browser.toLowerCase()) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", ""); // Apparently the WebDriver for chrome V 122 is nor ready lol. we'll be using edge.
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "path/to/geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", "");
                 driver = new FirefoxDriver();
                 break;
             case "edge":

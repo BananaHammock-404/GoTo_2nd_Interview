@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.TestHelper;
 
@@ -23,9 +24,14 @@ public class HomePage {
      */
 
 
+    public void switchToMainContent() {
+        driver.switchTo().defaultContent();
+    }
+
+
 //  Landing Page
     public boolean isTitleDisplayed() {
-        return TestHelper.isElementDisplayed(wait, By.xpath("//div[@class='title']"));
+        return TestHelper.isElementPresent(wait, By.xpath("//div[@class='title']"));
     }
 
     public String getTitleText() {
@@ -40,10 +46,19 @@ public class HomePage {
         TestHelper.clickButtonByXpath(wait, "//a[contains(text(),'SIGN UP  →')]");
     }
 
+    public void clickCloseErrMsg() throws InterruptedException {
+        TestHelper.clickButtonByXpath(wait, "//div[@class='close']");
+    }
 
-//  Overlay BuyNow Homepage
+
+//  Shopping Cart Overlay Homepage
+
+    public boolean isOverlayDisplayed() {
+        return TestHelper.isElementVisible(wait, By.xpath("//div[@class='cart-inner']"));
+    }
+
     public void setPriceField(String price) {
-        TestHelper.setTextByXpath(wait, "//tbody/tr[1]/td[3]", price);
+        TestHelper.setTextByXpath(wait, "//tbody/tr[1]/td[3]/input[1]", price);
     }
 
     public void setBuyerNameField(String buyerName) {
@@ -51,7 +66,7 @@ public class HomePage {
     }
 
     public void setBuyerEmailField(String buyerEmail) {
-        TestHelper.setTextByXpath(wait,"(//tbody/tr[2]/td[2])[2]" ,buyerEmail);
+        TestHelper.setTextByXpath(wait,"//tbody/tr[2]/td[2]/input" ,buyerEmail);
     }
 
     public void setBuyerPhoneField(String buyerPhone) {
@@ -70,17 +85,27 @@ public class HomePage {
         TestHelper.setTextByXpath(wait,"(//tbody/tr[6]/td[2])" ,buyerPostCode);
     }
 
-    public PaymentPopupPage clickCheckoutButton () throws InterruptedException {
+    public void clickCheckoutButton () throws InterruptedException {
         TestHelper.clickButtonByXpath(wait, "//div[@class='cart-checkout']");
+        Thread.sleep(1000);
+    }
 
-        if (TestHelper.isElementDisplayed(wait, By.xpath("//div[@class='test-notice']"))) {
-            return new PaymentPopupPage(driver, wait);
-        }
-        return null; // If Checkout process fail and Error message shows
+    public PaymentPopupPage clickCheckoutSuccessButton () throws InterruptedException {
+        TestHelper.clickButtonByXpath(wait, "//div[@class='cart-checkout']");
+        Thread.sleep(1000);
+        return new PaymentPopupPage(driver, wait);
+    }
+
+    public void clickCancelCheckout () throws InterruptedException {
+        TestHelper.clickButtonByXpath(wait,"//div[@class='cancel-btn']");
     }
 
     public boolean isErrorCheckout() {
-        return TestHelper.isElementDisplayed(wait, By.xpath("//div[@class='trans-status trans-error']"));
+        return TestHelper.isElementPresent(wait, By.xpath("//div[@class='trans-status trans-error']"));
+    }
+
+    public boolean isSuccessPaymentVisible() {
+        return TestHelper.isElementVisible(wait, By.xpath("//*[@id=\"container\"]/div/div/div[1]/div[2]/div/div[2]/div"));
     }
 
 

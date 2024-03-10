@@ -3,7 +3,7 @@ package tests;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;  // Using 'Method' since it's a small project, and only need to run once, even for negative cases
+import org.testng.annotations.AfterSuite;  // Using 'Method' since it's a small project, and only need to run once, even for negative cases
 import org.testng.annotations.BeforeSuite;
 import pages.HomePage;
 import utils.WebDriverFactory;
@@ -36,7 +36,7 @@ public class BaseTest {
         driver.get("https://demo.midtrans.com/#");
     }
 
-    @AfterMethod
+    @AfterSuite
     public void tearDown() {
         // Quit the WebDriver instance
         WebDriverFactory.quitDriver();
