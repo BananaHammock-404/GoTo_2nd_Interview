@@ -22,4 +22,5 @@ Rules Found:
 - Afterward, I would recommend opening it in IntelliJ IDE
 - Once opened, reload Maven Dependencies. Look for options like "Reload Project," "Refresh," or "Update Project" depending on your IDE.
 - You can Run the Test by going to src/test/java/tests/BeliPakeCCTanteTest.java and click on the Run button provided.
-- Thats all folks
+- Im afraid that the chrome browsers web driver is not up to date with the latest chrome version V122. so I suggest you use Edge browser from Windows. 
+- If you're on mac, might want to try using the provided Mozilla browser
